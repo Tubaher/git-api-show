@@ -56,5 +56,36 @@ export const mockCommitsResponse = [
       type: 'User',
       site_admin: false,
     },
+    committer: {
+      login: 'Tubaher',
+      id: 38712907,
+      node_id: 'MDQ6VXNlcjM4NzEyOTA3',
+      avatar_url: 'https://avatars.githubusercontent.com/u/38712907?v=4',
+      gravatar_id: '',
+      url: 'https://api.github.com/users/Tubaher',
+      html_url: 'https://github.com/Tubaher',
+      followers_url: 'https://api.github.com/users/Tubaher/followers',
+      following_url:
+        'https://api.github.com/users/Tubaher/following{/other_user}',
+      gists_url: 'https://api.github.com/users/Tubaher/gists{/gist_id}',
+      starred_url:
+        'https://api.github.com/users/Tubaher/starred{/owner}{/repo}',
+      subscriptions_url: 'https://api.github.com/users/Tubaher/subscriptions',
+      organizations_url: 'https://api.github.com/users/Tubaher/orgs',
+      repos_url: 'https://api.github.com/users/Tubaher/repos',
+      events_url: 'https://api.github.com/users/Tubaher/events{/privacy}',
+      received_events_url:
+        'https://api.github.com/users/Tubaher/received_events',
+      type: 'User',
+      site_admin: false,
+    },
+    parents: [
+      {
+        sha: '10baa52ff6dd2474751ee348ef594094e21e2905',
+        url: 'https://api.github.com/repos/Tubaher/git-api-show/commits/10baa52ff6dd2474751ee348ef594094e21e2905',
+        html_url:
+          'https://github.com/Tubaher/git-api-show/commit/10baa52ff6dd2474751ee348ef594094e21e2905',
+      },
+    ],
   },
 ];
