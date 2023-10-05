@@ -1,18 +1,14 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { Octokit } from 'octokit';
+import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Octokit } from '@octokit/core';
 
 @Injectable()
 export class CommitsService {
-  constructor(private readonly configService: ConfigService) {}
+  constructor(@Inject('Octokit') private readonly octokit: Octokit) {}
   private readonly logger = new Logger(CommitsService.name);
+
   async getCommits() {
     try {
-      const octokit = new Octokit({
-        auth: this.configService.get<string>('GITHUB_TOKEN'),
-      });
-
-      const { data } = await octokit.request(
+      const { data } = await this.octokit.request(
         'GET /repos/{owner}/{repo}/commits',
         {
           owner: 'Tubaher',
@@ -22,7 +18,9 @@ export class CommitsService {
       return data;
     } catch (error) {
       this.logger.error(error);
-      throw new Error('Error while fetching commits');
+      throw new Error(
+        'Could not retrieve commits from the specified repository',
+      );
     }
   }
 }

@@ -1,27 +1,26 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { CommitsService } from './commits.service';
 import { ConfigService } from '@nestjs/config';
-import { Octokit } from 'octokit';
 import { mockCommitsResponse } from './commits.mock';
+import { OctokitService } from '../octokit/octokit.service';
+import { OctokitModule } from '../octokit/octokit.module';
 
 jest.mock('octokit');
 
 describe('CommitsService', () => {
   let service: CommitsService;
   let configService: ConfigService;
-  let octokit: jest.Mocked<Octokit>;
+  let octokitService: OctokitService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
+      imports: [OctokitModule],
       providers: [CommitsService, ConfigService],
     }).compile();
 
     service = module.get<CommitsService>(CommitsService);
     configService = module.get<ConfigService>(ConfigService);
-
-    octokit = {
-      request: jest.fn(),
-    } as unknown as jest.Mocked<Octokit>;
+    octokitService = module.get<OctokitService>(OctokitService);
   });
 
   it('should be defined', () => {
@@ -38,14 +37,14 @@ describe('CommitsService', () => {
         method: 'GET',
       };
 
-      octokit.request.mockResolvedValueOnce(mockResponse);
       jest.spyOn(configService, 'get').mockReturnValueOnce('test-token');
+      jest.spyOn(octokitService, 'request').mockResolvedValueOnce(mockResponse);
 
       const result = await service.getCommits();
       expect(result).toBeInstanceOf(Array);
       expect(result).toHaveLength(1);
       expect(result).toEqual([mockCommitsResponse]);
-      expect(octokit.request).toHaveBeenCalledWith(
+      expect(octokitService.request).toHaveBeenCalledWith(
         'GET /repos/{owner}/{repo}/commits',
         {
           owner: 'Tubaher',
