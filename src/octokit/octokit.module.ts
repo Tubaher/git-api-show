@@ -14,7 +14,7 @@ const OctokitProvider: Provider = {
 };
 
 @Module({
-  providers: [OctokitProvider],
+  providers: [OctokitProvider, ConfigService],
   exports: ['Octokit'],
 })
 export class OctokitModule {}

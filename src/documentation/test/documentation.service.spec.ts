@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DocumentationService } from './documentation.service';
+import { DocumentationService } from '../documentation.service';
 import { INestApplication } from '@nestjs/common';
 
 describe('DocumentationService', () => {
