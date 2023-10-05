@@ -28,7 +28,7 @@ describe('DocumentationService', () => {
 
     jest.spyOn(DocumentationService, 'setup').mockImplementation(() => {});
 
-    await DocumentationService.setup({
+    DocumentationService.setup({
       app,
       endpointPath,
       title,
