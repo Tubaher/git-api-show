@@ -4,6 +4,6 @@ import { CommitsController } from './commits.controller';
 
 @Module({
   providers: [CommitsService],
-  controllers: [CommitsController]
+  controllers: [CommitsController],
 })
 export class CommitsModule {}
