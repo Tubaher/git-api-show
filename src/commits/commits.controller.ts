@@ -10,7 +10,7 @@ export class CommitsController {
     try {
       return await this.commitsService.getCommits();
     } catch (error) {
-      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
+      throw new HttpException(error.message, HttpStatus.BAD_GATEWAY);
     }
   }
 }
