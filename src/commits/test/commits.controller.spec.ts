@@ -25,14 +25,23 @@ describe('CommitsController', () => {
   });
   describe('getCommits', () => {
     it('should return an array of commits', async () => {
-      jest
-        .spyOn(commitsService, 'getCommits')
-        .mockResolvedValueOnce(mockCommitsResponse);
+      jest.spyOn(commitsService, 'getCommits').mockResolvedValueOnce({
+        commits: mockCommitsResponse,
+        page: 1,
+        perPage: 1,
+        totalPages: 1,
+      });
 
-      const result = await controller.findAll();
-      expect(result).toBeInstanceOf(Array);
-      expect(result).toHaveLength(1);
-      expect(result).toEqual(mockCommitsResponse);
+      const result = await controller.findAll({ page: 1, perPage: 1 });
+      expect(result).toBeInstanceOf(Object);
+      expect(result.commits).toHaveLength(1);
+      expect(result.commits).toEqual(mockCommitsResponse);
+      expect(result).toEqual({
+        commits: mockCommitsResponse,
+        page: 1,
+        perPage: 1,
+        totalPages: 1,
+      });
     });
   });
 });

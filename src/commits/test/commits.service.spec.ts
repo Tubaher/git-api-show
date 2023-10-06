@@ -45,15 +45,23 @@ describe('CommitsService', () => {
       octokit.request.mockResolvedValueOnce(mockResponse);
       jest.spyOn(configService, 'get').mockReturnValueOnce('test-token');
 
-      const result = await service.getCommits();
-      expect(result).toBeInstanceOf(Array);
-      expect(result).toHaveLength(1);
-      expect(result).toEqual(mockCommitsResponse);
+      const result = await service.getCommits(1, 1);
+
+      expect(result.commits).toBeInstanceOf(Array);
+      expect(result.commits).toHaveLength(1);
+      expect(result).toEqual({
+        commits: mockCommitsResponse,
+        page: 1,
+        perPage: 1,
+        totalPages: 1,
+      });
       expect(octokit.request).toHaveBeenCalledWith(
         'GET /repos/{owner}/{repo}/commits',
         {
           owner: 'Tubaher',
           repo: 'git-api-show',
+          page: 1,
+          per_page: 1,
         },
       );
     });
