@@ -6,7 +6,7 @@ import { DocumentationService } from './documentation/documentation.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({}));
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   DocumentationService.setup({
     title: 'Github API Interaction',

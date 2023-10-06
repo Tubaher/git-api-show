@@ -33,6 +33,7 @@ export class CommitsService {
             .split('&')[0],
         };
       }
+
       return {
         commits: response.data,
         page: page,
