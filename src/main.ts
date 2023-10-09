@@ -16,7 +16,7 @@ async function bootstrap() {
     app,
     endpointPath: 'api',
   });
-  const port = app.get(ConfigService).get('PORT');
+  const port = app.get(ConfigService).get('PORT') || 3001;
 
   app.enableCors({
     origin: '*',
