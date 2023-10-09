@@ -22,6 +22,19 @@ PORT=3001 # or any other port you want, the default is 3001
 pnpm start
 ```
 
+# Usage
+
 6. The API is now running on `http://localhost:3001` (or whatever port you specified in step 4)
 
 7. Now you can interact with the API from the [frontend UI](https://github.com/Tubaher/show-commits-ui).
+
+8. The API documentation is available at `http://localhost:3001/api`
+
+# Tips
+
+- You can use tools like `fnm`or `nvm` to manage your node versions, here I provided a `nvmrc` file with the node version used in this project.
+- You can run `pnpm run dev` to start the server in development mode. This will automatically restart the server when you make changes to the code.
+- You can run `pnpm run lint` to lint the code.
+- You can run `pnpm run test` to run the tests.
+- You can run `pnpm run test:e2e` to run the e2e tests.
+- You can run `pnpm run build` to build the project.
