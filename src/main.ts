@@ -17,6 +17,13 @@ async function bootstrap() {
     endpointPath: 'api',
   });
   const port = app.get(ConfigService).get('PORT');
+
+  app.enableCors({
+    origin: '*',
+    methods: 'GET,HEAD',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
+
   await app.listen(port);
 }
 bootstrap();
